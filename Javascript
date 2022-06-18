@@ -1,0 +1,38 @@
+<script>
+    let slideIndex = [1,1];
+    let slideCon = ["mySlides", "mySlides2"];
+    let dotCon = ["dot1", "dot2"];
+
+    showSlides(slideIndex[0], 0);
+    showSlides(slideIndex[1], 1);
+
+// Next/previous controls
+function plusSlides(n, slide_no) {
+    showSlides(slideIndex[slide_no] += n, slide_no);
+}
+
+// Thumbnail image controls
+function currentSlide(n, slide_no) {
+  showSlides(slideIndex[slide_no] = n, slide_no);
+}
+
+function showSlides(n, slide_no) {
+  let i;
+  let slides = document.getElementsByClassName(slideCon[slide_no]);
+  let dots = document.getElementsByClassName(dotCon[slide_no]);
+
+  if (n > slides.length) {slideIndex[slide_no] = 1}
+  if (n < 1) {slideIndex[slide_no] = slides.length }
+
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  slides[slideIndex[slide_no]-1].style.display = "block";
+  dots[slideIndex[slide_no]-1].className += " active";
+}
+</script>
